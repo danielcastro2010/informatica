@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 2 - Contador Ascendente</title>
+</head>
+<body>
+    <h1>Ejercicio: Contador ascendente</h1>
+    <p>Contador = <span id="conteo">0</span></p>
+    <button id="btnsubir">Subir</button>
+
+    <script src="js ej2(rojo)"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Cambiar Colores</title>
+</head>
+<body>
+    <h1>Ejercicio: Cambiar colores</h1>
+    <button id="btnRojo">Fondo Rojo / Texto Blanco</button>
+    <button id="btnVerde">Fondo Verde / Texto Negro</button>
+    <button id="btnAzul">Fondo Azul / Texto Amarillo</button>
+
+    <script src="js ej5(rojo)"></script>
+</body>
+</html>

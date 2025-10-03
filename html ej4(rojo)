@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1 - Contador Descendente</title>
+</head>
+<body>
+    <h1>Ejercicio: Contador descendente</h1>
+    <p>Contador = <span id="conteo">10</span></p>
+    <button id="btnbajar">Bajar</button>
+
+    <script src="js ej4(rojo)"></script>
+</body>
+</html>

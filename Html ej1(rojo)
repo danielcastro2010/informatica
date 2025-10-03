@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 1 - Cambiar Texto</title>
+</head>
+<body>
+    <h1>Ejercicio: Modificar texto al presionar un botón</h1>
+    <p id="texto">Texto original</p>
+    <button id="btntexto">Haz clic</button>
+
+    <script src="js ej1(rojo)"></script>
+</body>
+</html>
