@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trivia San Pedro de la Natividad de María Cassani</title>
+
+<!-- ESTILOS PARA EL MODAL -->
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+section {
+  padding: 50px 0;
+}
+button {
+  background-color: #0074D9;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+.modal-contenido {
+  background: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: left;
+}
+.cerrar {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+.cerrar:hover {
+  color: red;
+}
+
+/* Resultados */
+.correcta { color: green; font-weight: bold; }
+.incorrecta { color: red; font-weight: bold; }
+#resultado { margin-top: 1em; }
+</style>
+</head>
+
+<body>
+
+<!-- SECCIÓN PARA JUGAR TRIVIA -->
+<section id="jugar-trivia">
+  <h2>¿Te animas a poner a prueba tus conocimientos sobre San Pedro de la Natividad de María Cassani?</h2>
+  <button id="abrirTrivia">Comenzar Trivia</button>
+</section>
+
+<!-- MODAL -->
+<div id="modalTrivia" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar">&times;</span>
+
+    <h2>Trivia sobre San Pedro de la Natividad de María Cassani</h2>
+    <form id="formTrivia">
+
+      <p><strong>1.</strong> ¿Dónde nació San Pedro de la Natividad de María Cassani?</p>
+      <label><input type="radio" name="p1" value="Barcelona"> Barcelona</label><br>
+      <label><input type="radio" name="p1" value="Verona"> Verona</label><br>
+      <label><input type="radio" name="p1" value="Roma"> Roma</label><br><br>
+
+      <p><strong>2.</strong> ¿A qué congregación perteneció?</p>
+      <label><input type="radio" name="p2" value="Compañía de Jesús"> Compañía de Jesús</label><br>
+      <label><input type="radio" name="p2" value="Escuelas Pías"> Escuelas Pías</label><br>
+      <label><input type="radio" name="p2" value="Dominicos"> Dominicos</label><br><br>
+
+      <p><strong>3.</strong> ¿Qué virtud destacó especialmente en su vida?</p>
+      <label><input type="radio" name="p3" value="La paciencia"> La paciencia</label><br>
+      <label><input type="radio" name="p3" value="La humildad"> La humildad</label><br>
+      <label><input type="radio" name="p3" value="La sabiduría"> La sabiduría</label><br><br>
+
+      <p><strong>4.</strong> ¿En qué ciudad ejerció gran parte de su misión educativa?</p>
+      <label><input type="radio" name="p4" value="Florencia"> Florencia</label><br>
+      <label><input type="radio" name="p4" value="Nápoles"> Nápoles</label><br>
+      <label><input type="radio" name="p4" value="Turín"> Turín</label><br><br>
+
+      <p><strong>5.</strong> ¿Qué día se celebra su memoria litúrgica?</p>
+      <label><input type="radio" name="p5" value="17 de septiembre"> 17 de septiembre</label><br>
+      <label><input type="radio" name="p5" value="25 de agosto"> 25 de agosto</label><br>
+      <label><input type="radio" name="p5" value="1 de mayo"> 1 de mayo</label><br><br>
+
+      <button type="submit">Enviar respuestas</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+</div>
+
+<!-- SCRIPT PARA ABRIR/CERRAR MODAL Y PROCESAR LA TRIVIA -->
+<script>
+// --- Modal: abrir y cerrar ---
+const modal = document.getElementById("modalTrivia");
+const btnAbrir = document.getElementById("abrirTrivia");
+const btnCerrar = document.querySelector(".cerrar");
+
+// Abrir modal al hacer clic en el botón
+btnAbrir.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+// Cerrar modal al hacer clic en la X
+btnCerrar.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Cerrar modal al hacer clic fuera del cuadro
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// --- Evaluar la trivia ---
+document.getElementById("formTrivia").addEventListener("submit", function(e) {
+  e.preventDefault();
+  let puntaje = 0;
+  let salida = "";
+
+  // Respuestas correctas
+  const respuestas = {
+    p1: "Verona",
+    p2: "Escuelas Pías",
+    p3: "La humildad",
+    p4: "Nápoles",
+    p5: "17 de septiembre"
+  };
+
+  // Evaluar cada pregunta
+  for (let i = 1; i <= 5; i++) {
+    const seleccion = document.querySelector(`input[name="p${i}"]:checked`);
+    if (seleccion) {
+      if (seleccion.value === respuestas[`p${i}`]) {
+        puntaje++;
+        salida += `<p class="correcta">${i}. ✅ Correcta</p>`;
+      } else {
+        salida += `<p class="incorrecta">${i}. ❌ Incorrecta. Correcta: ${respuestas[`p${i}`]}</p>`;
+      }
+    } else {
+      salida += `<p class="incorrecta">${i}. ❌ No respondida. Correcta: ${respuestas[`p${i}`]}</p>`;
+    }
+  }
+
+  // Mensaje final
+  salida += `<h4>Puntaje final: ${puntaje} de 5</h4>`;
+  if (puntaje === 5) salida += "<p>🌟 ¡Excelente trabajo! Conoces muy bien la vida de San Pedro de la Natividad de María Cassani.</p>";
+  else if (puntaje >= 3) salida += "<p>👏 Muy bien, conoces bastante sobre este santo escolapio.</p>";
+  else salida += "<p>📖 Puedes repasar la página para aprender más sobre su vida y legado.</p>";
+
+  document.getElementById("resultado").innerHTML = salida;
+});
+</script>
+
+</body>
+</html>
